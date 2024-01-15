@@ -12,7 +12,7 @@ public interface TaskRepository extends JpaRepository<Task, Long> {
 
     List<Task> findByStatus(String status);
 
-    List<Task> findByDate(Date date);
+    List<Task> findByDueDate(Date dueDate);
 
     List<Task> findByTitleEquals(String title);
 

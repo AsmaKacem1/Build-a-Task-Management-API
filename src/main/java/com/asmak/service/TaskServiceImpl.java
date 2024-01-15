@@ -55,7 +55,7 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public List<Task> getTasksDate(Date date) {
-        return taskRepository.findByDate(date);
+        return taskRepository.findByDueDate(date);
     }
 
     @Override

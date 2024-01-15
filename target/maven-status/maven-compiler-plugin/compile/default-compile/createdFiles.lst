@@ -1,0 +1,6 @@
+com\asmak\controller\TaskController.class
+com\asmak\TaskManagementApiApplication.class
+com\asmak\service\TaskServiceImpl.class
+com\asmak\model\Task.class
+com\asmak\repository\TaskRepository.class
+com\asmak\service\TaskService.class

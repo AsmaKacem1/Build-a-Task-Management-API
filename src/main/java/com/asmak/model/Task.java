@@ -2,20 +2,13 @@ package com.asmak.model;
 
 import java.util.Date;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
+@Entity
 public class Task {
-
-    public Task(Long id, String title, String description, String status, Date dueDate) {
-        this.id = id;
-        this.title = title;
-        this.description = description;
-        this.status = status;
-        this.dueDate = dueDate;
-    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,6 +17,15 @@ public class Task {
     private String description;
     private String status;
     private Date dueDate;
+
+
+    public Task(Long id, String title, String description, String status, Date dueDate) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.status = status;
+        this.dueDate = dueDate;
+    }
 
     public Long getId() {
         return this.id;
