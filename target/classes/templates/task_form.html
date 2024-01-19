@@ -39,11 +39,11 @@
             <input type="text" class="form-control" name="title" id="title" placeholder="Task Title" th:field="*{title}" required >
         </div>
         <div class="form-group">
-            <label>Description</label>
+            <label>Task Description</label>
             <textarea type="text" class="form-control" name="description" id="description" placeholder="Task Description" th:field="*{description}" required></textarea>
         </div>
         <div class="form-group">
-            <label>Status</label>
+            <label>Task Status</label>
             <select class="form-control" name="status" th:field="*{status}" id="status" required>
                 <option value="" disabled selected>Select Status</option>
                 <option value="Completed">Completed</option>
@@ -51,7 +51,7 @@
             </select>
         </div>
         <div class="form-group">
-            <label>Date</label>
+            <label>Task Date</label>
             <input type="date" class="form-control" name="dueDate" id="dueDate" th:field="*{dueDate}" required>
         </div>
         <button type="submit" class="btn btn-primary" id="addTaskButton" >Add Task</button>

@@ -8,4 +8,6 @@ public interface TaskService {
     List<TaskModel> getALLTasks();
 
     TaskModel saveTask(TaskModel taskModel);
+
+    void deleteTaskById(Long id);
 }

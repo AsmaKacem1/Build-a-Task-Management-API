@@ -57,9 +57,10 @@
                     <button class="btn btn-outline-info" type="submit">
                         <a class="nav-link" th:href="@{/tasks/form}">Update</a>
                     </button><div style="margin-right: 10px;"></div>
-                    <button class="btn btn-outline-danger" type="submit">
-                        <a class="nav-link text-danger" th:href="@{/tasks/form}">Delete</a>
+                    <button class="btn btn-outline-danger" th:if="${task != null}">
+                        <a class="nav-link text-danger" th:href="@{/tasks/{id}(id=${task.id}?default(''))}">Delete</a>
                     </button>
+
                 </div>
             </td>
         </tr>
