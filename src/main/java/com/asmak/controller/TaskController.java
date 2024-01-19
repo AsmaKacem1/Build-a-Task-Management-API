@@ -46,6 +46,25 @@ public class TaskController {
     }
 
 
+    @GetMapping("/tasks/update/{id}")
+    public String editTask( @PathVariable Long id,Model model){
+        model.addAttribute("tasks",taskService.getTaskById(id));
+        return "task_update";
+    }
+
+    @PostMapping("/tasks/{id}")
+    public String updateTask( @PathVariable Long id,Model model,@ModelAttribute("taskModel") TaskModel taskModel){
+        TaskModel currentTask=taskService.getTaskById(id);
+        currentTask.setId(id);
+        currentTask.setTitle(taskModel.getTitle());
+        currentTask.setDescription(taskModel.getDescription());
+        currentTask.setStatus(taskModel.getStatus());
+        currentTask.setDueDate(taskModel.getDueDate());
+        taskService.updateTask(currentTask);
+        return "redirect:/tasks";
+    }
+
+
 
 
 

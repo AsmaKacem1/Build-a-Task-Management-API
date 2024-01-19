@@ -9,6 +9,7 @@ import java.util.Date;
 @Table(name = "task")
 @Entity
 public class TaskModel {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -22,10 +23,6 @@ public class TaskModel {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dueDate;
 
-    public void setDueDate(LocalDate dueDate) {
-        this.dueDate = dueDate;
-    }
-
     public TaskModel() {
     }
 
@@ -35,6 +32,18 @@ public class TaskModel {
         this.description = description;
         this.status = status;
         this.dueDate = dueDate;
+    }
+
+    public void setDueDate(LocalDate dueDate) {
+        this.dueDate = dueDate;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getTitle() {

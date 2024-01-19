@@ -16,7 +16,7 @@
 
                     <a class="nav-link" th:href="@{/tasks/form}"><a href="/tasks/form" class="btn btn-outline-info" role="button" aria-pressed="true">Add Task</a> <span class="sr-only">(current)</span></a>
                     <div style="margin-right: 10px;"></div>
-                    <button class="btn btn-outline-info" type="submit">Search</button>
+                    <button class="btn btn-outline-info" type="submit">Search Task</button>
                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                 </div>
             </form>
@@ -47,18 +47,20 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each = "tasks: ${tasks}">
-            <td th:text = "${tasks.title}"></td>
-            <td th:text = "${tasks.description}"></td>
-            <td th:text = "${tasks.status}"></td>
-            <td th:text = "${tasks.dueDate}"></td>
+        <tr th:each = "task: ${tasks}">
+            <td th:text = "${task.title}"></td>
+            <td th:text = "${task.description}"></td>
+            <td th:text = "${task.status}"></td>
+            <td th:text = "${task.dueDate}"></td>
             <td>
                 <div class="btn-group">
-                    <button class="btn btn-outline-info" type="submit">
-                        <a class="nav-link" th:href="@{/tasks/form}">Update</a>
+                    <button class="btn btn-outline-info" >
+                        <a class="nav-link" th:href="@{/tasks/update/{id}(id=${task.id})}">Update</a>
                     </button><div style="margin-right: 10px;"></div>
-                    <button class="btn btn-outline-danger" th:if="${task != null}">
-                        <a class="nav-link text-danger" th:href="@{/tasks/{id}(id=${task.id}?default(''))}">Delete</a>
+
+                    <button class="btn btn-outline-danger">
+                        <a class="nav-link text-danger" th:href="@{/tasks/{id}(id=${task.id})}">Delete</a>
+
                     </button>
 
                 </div>
