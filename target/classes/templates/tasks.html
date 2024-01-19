@@ -8,25 +8,60 @@
           crossorigin="anonymous">
 </head>
 <body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <form class="form-inline my-2 my-lg-0">
+                <div class="container">
+
+                    <a class="nav-link" th:href="@{/tasks/form}"><a href="/tasks/form" class="btn btn-outline-info" role="button" aria-pressed="true">Add Task</a> <span class="sr-only">(current)</span></a>
+                    <div style="margin-right: 10px;"></div>
+                    <button class="btn btn-outline-info" type="submit">Search</button>
+                   <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                </div>
+            </form>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+            <a class="nav-link" th:href="@{/tasks/form}"><a href="/tasks/form" class="btn btn-outline-info" role="button" aria-pressed="true">Logout</a> <span class="sr-only">(current)</span></a>
+
+
+        </ul>
+    </div>
+</nav>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
 
 <div class="container">
-    <div class="row">
-        <h1>Task List</h1>
-    </div>
+
     <table class="table">
         <thead class="thead-dark">
         <tr>
-            <th scope="col">#</th>
             <th scope="col">Title</th>
+            <th scope="col">Description</th>
             <th scope="col">Status</th>
-            <th scope="col">Due Date</th>
+            <th scope="col">Date</th>
+            <th scope="col">Action</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each = "tasks: ${tasks}">
             <td th:text = "${tasks.title}"></td>
+            <td th:text = "${tasks.description}"></td>
             <td th:text = "${tasks.status}"></td>
-            <td th:text = "${tasks.status}"></td>
+            <td th:text = "${tasks.dueDate}"></td>
+            <td>
+                <div class="btn-group">
+                    <button class="btn btn-outline-info" type="submit">
+                        <a class="nav-link" th:href="@{/tasks/form}">Update</a>
+                    </button><div style="margin-right: 10px;"></div>
+                    <button class="btn btn-outline-danger" type="submit">
+                        <a class="nav-link text-danger" th:href="@{/tasks/form}">Delete</a>
+                    </button>
+                </div>
+            </td>
         </tr>
         </tbody>
     </table>

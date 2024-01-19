@@ -1,6 +1,9 @@
 package com.asmak.model;
 
 import jakarta.persistence.*;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.time.LocalDate;
 import java.util.Date;
 
 @Table(name = "task")
@@ -12,13 +15,21 @@ public class TaskModel {
     private String title;
     private String description;
     private String status;
+
+
+
     @Column(name = "due_date")
-    private Date dueDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate dueDate;
+
+    public void setDueDate(LocalDate dueDate) {
+        this.dueDate = dueDate;
+    }
 
     public TaskModel() {
     }
 
-    public TaskModel(String title, String description, String status, Date dueDate) {
+    public TaskModel(String title, String description, String status, LocalDate dueDate) {
         super();
         this.title = title;
         this.description = description;
@@ -50,13 +61,10 @@ public class TaskModel {
         this.status = status;
     }
 
-    public Date getDueDate() {
+    public LocalDate getDueDate() {
         return dueDate;
     }
 
-    public void setDueDate(Date dueDate) {
-        this.dueDate = dueDate;
-    }
 
     public String toString() {
         return "Task{" +
