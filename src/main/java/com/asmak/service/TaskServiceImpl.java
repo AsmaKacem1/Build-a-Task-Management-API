@@ -3,6 +3,10 @@ package com.asmak.service;
 import com.asmak.model.TaskModel;
 import com.asmak.repository.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -29,6 +33,15 @@ public class TaskServiceImpl implements TaskService{
     @Override
     public void deleteTaskById(Long id){
          taskRepository.deleteById(id);
+    }
+
+    @Override
+    public Page<TaskModel> findPaginated(int pageNo, int pageSize, String sortField, String sortDirection) {
+        Sort sort = sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortField).ascending() :
+                Sort.by(sortField).descending();
+
+        Pageable pageable = PageRequest.of(pageNo - 1, pageSize, sort);
+        return taskRepository.findAll(pageable);
     }
 
     @Override

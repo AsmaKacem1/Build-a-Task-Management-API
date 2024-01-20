@@ -3,12 +3,16 @@ package com.asmak.controller;
 import com.asmak.model.TaskModel;
 import com.asmak.service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.List;
 
 @Controller
 public class TaskController {
@@ -21,10 +25,30 @@ public class TaskController {
 
     @GetMapping("/tasks")
     public String listTasks(Model model){
-        model.addAttribute("tasks",taskService.getALLTasks());
-        System.out.println(model);
+        return findPaginated(1, "dueDate", "asc", model);
+    }
+
+    @GetMapping("/page/{pageNo}")
+    public String findPaginated(@PathVariable (value = "pageNo") int pageNo, @RequestParam("sortField") String sortField,
+                                @RequestParam("sortDir") String sortDir,
+                                Model model) {
+        int pageSize = 5;
+
+        Page<TaskModel> page = taskService.findPaginated(pageNo, pageSize, sortField, sortDir);
+        List<TaskModel> listTasks = page.getContent();
+
+        model.addAttribute("currentPage", pageNo);
+        model.addAttribute("totalPages", page.getTotalPages());
+        model.addAttribute("totalItems", page.getTotalElements());
+
+        model.addAttribute("sortField", sortField);
+        model.addAttribute("sortDir", sortDir);
+        model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
+
+        model.addAttribute("tasks", listTasks);
         return "tasks";
     }
+
 
     @GetMapping("/tasks/form")
     public String formTask(Model model){
